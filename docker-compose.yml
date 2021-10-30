@@ -26,6 +26,4 @@ services:
             - POSTGRES_USER=postgres
             - POSTGRES_PORT=5432
             - POSTGRES_HOST=db
-volumes:
-    postgres-data:
 
