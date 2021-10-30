@@ -7,9 +7,9 @@ services:
             - postgres-data:/var/lib/postgresql/data
         restart: unless-stopped
         environment:
-            - POSTGRES_PASSWORD=joplin
-            - POSTGRES_USER=joplin
-            - POSTGRES_DB=joplin
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_DB=postgres
     app:
         image: joplin/server:latest
         depends_on:
@@ -21,9 +21,9 @@ services:
             - APP_PORT=22300
             - APP_BASE_URL=${APP_BASE_URL}
             - DB_CLIENT=pg
-            - POSTGRES_PASSWORD=joplin
-            - POSTGRES_DATABASE=joplin
-            - POSTGRES_USER=joplin
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DATABASE=postgres
+            - POSTGRES_USER=postgres
             - POSTGRES_PORT=5432
             - POSTGRES_HOST=db
 volumes:
