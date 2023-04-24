@@ -1,29 +1,28 @@
 version: '3.9'
 
 services:
-    db:
-        image: postgres:13
-        volumes:
-            - ${DB_ROOT:-./volumes/postgres_data}:/var/lib/postgresql/data
-        restart: always
-        environment:
-            - POSTGRES_PASSWORD=postgres
-            - POSTGRES_USER=postgres
-            - POSTGRES_DB=postgres
-    app:
-        image: joplin/server:2.9-beta
-        depends_on:
-            - db
-        ports:
-            - "127.0.0.1:22300:22300"
-        restart: always
-        environment:
-            - APP_PORT=22300
-            - APP_BASE_URL=${APP_BASE_URL}
-            - DB_CLIENT=pg
-            - POSTGRES_PASSWORD=postgres
-            - POSTGRES_DATABASE=postgres
-            - POSTGRES_USER=postgres
-            - POSTGRES_PORT=5432
-            - POSTGRES_HOST=db
-
+  db:
+    image: postgres:13
+    volumes:
+      - ${DB_ROOT:-./volumes/postgres_data}:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+  app:
+    image: joplin/server:2.9-beta
+    depends_on:
+      - db
+    ports:
+      - "127.0.0.1:22300:22300"
+    restart: always
+    environment:
+      - APP_PORT=22300
+      - APP_BASE_URL=${APP_BASE_URL}
+      - DB_CLIENT=pg
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DATABASE=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_HOST=db
