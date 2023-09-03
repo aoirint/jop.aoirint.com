@@ -12,7 +12,7 @@ services:
       - POSTGRES_DB=postgres
 
   app:
-    image: joplin/server:2.10-beta
+    image: joplin/server:2.12-beta
     depends_on:
       - db
     ports:
