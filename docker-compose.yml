@@ -2,9 +2,9 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:13
+    image: postgres:14
     volumes:
-      - ${DB_ROOT:-./volumes/postgres_data}:/var/lib/postgresql/data
+      - ${DB_ROOT:-./volumes/postgres_14_data}:/var/lib/postgresql/data
     restart: always
     environment:
       - POSTGRES_PASSWORD=postgres
