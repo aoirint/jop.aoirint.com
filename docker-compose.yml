@@ -2,7 +2,7 @@ services:
   db:
     image: postgres:14
     volumes:
-      - ${DB_ROOT:-./volumes/postgres_14_data}:/var/lib/postgresql/data
+      - ${DB_ROOT:?}:/var/lib/postgresql/data
     restart: always
     environment:
       - POSTGRES_PASSWORD=postgres
@@ -16,7 +16,7 @@ services:
     restart: always
     environment:
       - APP_PORT=22300
-      - APP_BASE_URL=${APP_BASE_URL}
+      - APP_BASE_URL=${APP_BASE_URL:?}
       - DB_CLIENT=pg
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DATABASE=postgres
