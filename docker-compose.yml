@@ -13,7 +13,7 @@ services:
       start_period: 10s
 
   app:
-    image: joplin/server:2.13-beta
+    image: joplin/server:2.14-beta
     depends_on:
       - db
     restart: always
