@@ -11,6 +11,11 @@ services:
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-U", "postgres"]
       start_period: 10s
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.jop_aoirint_com.db.{{.ID}}
+        fluentd-async: "true"
 
   app:
     image: joplin/server:2.14-beta
@@ -26,6 +31,11 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PORT=5432
       - POSTGRES_HOST=db
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.jop_aoirint_com.app.{{.ID}}
+        fluentd-async: "true"
 
   nginx:
     image: nginx:latest
@@ -39,6 +49,11 @@ services:
       - ${NGINX_LOG_DIR:?}:/logs
     environment:
       - NGINX_ENVSUBST_TEMPLATE_SUFFIX=.nginx
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.jop_aoirint_com.nginx.{{.ID}}
+        fluentd-async: "true"
 
   cloudflared:
     image: cloudflare/cloudflared:latest
@@ -48,3 +63,8 @@ services:
       - nginx
     environment:
       TUNNEL_TOKEN: ${CLOUDFLARED_TUNNEL_TOKEN:?}
+    logging:
+      driver: fluentd
+      options:
+        tag: docker.jop_aoirint_com.cloudflared.{{.ID}}
+        fluentd-async: "true"
