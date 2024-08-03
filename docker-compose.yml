@@ -18,7 +18,7 @@ services:
         fluentd-async: "true"
 
   app:
-    image: joplin/server:2.14-beta
+    image: joplin/server:3-beta
     depends_on:
       - db
     restart: always
